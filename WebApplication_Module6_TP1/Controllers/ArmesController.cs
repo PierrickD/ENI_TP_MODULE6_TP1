@@ -110,9 +110,24 @@ namespace WebApplication_Module6_TP1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Arme arme = db.Armes.Find(id);
-            db.Armes.Remove(arme);
-            db.SaveChanges();
+            try
+            {
+                Arme arme = db.Armes.Find(id);
+
+                var samouraisList = db.Samourais.Where(samourai => samourai.Arme.Id == id).ToList();
+                foreach (var samourai in samouraisList)
+                {
+                    samourai.Arme = null;
+                }
+
+                db.Armes.Remove(arme);
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                
+            }
+            
             return RedirectToAction("Index");
         }
 

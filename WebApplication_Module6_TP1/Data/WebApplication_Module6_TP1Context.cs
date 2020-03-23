@@ -20,5 +20,7 @@ namespace WebApplication_Module6_TP1.Data
         }
 
         public System.Data.Entity.DbSet<WebApplication_Module6_TP1.Models.BO.Arme> Armes { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication_Module6_TP1.Models.BO.Samourai> Samourais { get; set; }
     }
 }
